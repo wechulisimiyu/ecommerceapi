@@ -5,6 +5,7 @@ const connectDB = require('./config/db')
 const morgan = require('morgan')
 const dotenv = require('dotenv')
 const userRoute = require('./routes/user')
+const authRoute = require('./routes/auth')
 
 // loading the config files
 dotenv.config({ path: './config/config.env' })
@@ -14,15 +15,16 @@ connectDB()
 
 const app = express()
 
-// Body parser
-app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
-
 // HTTP request logger middleware 
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
 }
 
+// Body parser
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+
+app.use("/api/auth", authRoute)
 app.use("/api/users", userRoute)
 
 const port = process.env.PORT || 5000
