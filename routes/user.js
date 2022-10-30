@@ -39,6 +39,7 @@ router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
 // @desc: get user
 // only admin can get any user
 // ROUTE GET/
+http://localhost:5000/api/users/find/id
 router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
     try {
         const user = await User.findById(req.params.id)
@@ -53,6 +54,7 @@ router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
 // @desc: get all users
 // only admin can get all users
 // ROUTE GET/
+// http://localhost:5000/api/users/stats
 router.get("/", verifyTokenAndAdmin, async (req, res) => {
     const query = req.query.new
     try {
