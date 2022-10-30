@@ -25,11 +25,7 @@ const ProductSchema = new mongoose.Schema(
       type: String,
     },
     price: {
-      type: Number,z
-    },
-    isAdmin: {
-      type: Boolean,
-      default: false,
+      type: Number,
     },
   },
   { timestamps: true }
