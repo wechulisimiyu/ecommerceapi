@@ -6,6 +6,7 @@ const morgan = require('morgan')
 const dotenv = require('dotenv')
 const userRoute = require('./routes/user')
 const authRoute = require('./routes/auth')
+const productRoute = require('./routes/product')
 
 // loading the config files
 dotenv.config({ path: './config/config.env' })
@@ -26,6 +27,7 @@ app.use(express.json())
 
 app.use("/api/auth", authRoute)
 app.use("/api/users", userRoute)
+app.use("/api/products", productRoute)
 
 const port = process.env.PORT || 5000
 

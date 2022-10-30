@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 
 // @desc: User register
 // Route: POST/
+// http://localhost:5000/api/auth/register
 router.post("/register", async (req, res) => {
     const newUser = new User({
         username: req.body.username,
@@ -25,6 +26,7 @@ router.post("/register", async (req, res) => {
 
 // @desc: User login
 // Route: POST/
+// http://localhost:5000/api/auth/login
 router.post("/login", async (req, res) => {
     // find user within db
     try {
