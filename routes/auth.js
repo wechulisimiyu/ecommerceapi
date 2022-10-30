@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const User = require('../models/User')
 const CryptoJS = require('crypto-js')
+const jwt = require('jsonwebtoken')
 
 // @desc: User register
 // Route: POST/
@@ -9,7 +10,9 @@ router.post("/register", async (req, res) => {
         username: req.body.username,
         email: req.body.email,
         // encrypted password
-        password: CryptoJS.AES.encrypt(req.body.password , process.env.PASSWORD_SECRET).toString()
+        password: CryptoJS.AES.encrypt(
+            req.body.password , 
+            process.env.PASSWORD_SECRET).toString()
     })
 
     try {
@@ -41,11 +44,20 @@ router.post("/login", async (req, res) => {
         // error if password is incorrect
         originalPassword !== req.body.password && res.status(401).json("Wrong password")
 
+
+        // jwt access token
+        const accessToken = jwt.sign({
+            id: user._id,
+            isAdmin: user.isAdmin
+        }, process.env.JWT_SECRET,
+        { expiresIn: "3d"}
+        )
+
         // we can destructure the password, and not send it
-        const { password, ...others }= user._doc
+        const { password, ...others } = user._doc
         
         // if successful    
-        res.status(200).json(others)
+        res.status(200).json({...others, accessToken })
     } catch (err) {
         // error status send instead
         res.status(500).json(err)
