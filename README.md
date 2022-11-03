@@ -7,14 +7,14 @@ ecommerce API is the backbone of an ecommerce site I hope to build with a react 
 * Public users will need to be authenticated to complete their order.
 * Authenticated users can access all products as well as edit their profile.
 ### Installation Guide
-* Clone this repository [here](git@github.com:wechu07/ecommerceapi.git).
+* Clone this repository [here](https://github.com/wechu07/ecommerceapi.git).
 * The master branch is the most stable branch at any given time, ensure you're working from it.
 * Run npm install to install all dependencies
 * Create an config/config.env file in your project root folder and add your variables. See sample.env for assistance.
 * You can either work with the local MongoDB configuration,or the [cloud](https://cloud.mongodb.com/) option. Configure it and save the URI in the config/config.env file.
 ### Usage
-* Run `npm run dev ` to start the application.
-* Connect to the API using Postman (or Hoppscotch, Thunderclient etc) on port 500-.
+* Run `npm run dev` to start the application.
+* Connect to the API using Postman (or Hoppscotch, Thunderclient etc) on port 5000.
 ### API Endpoints
 | HTTP Verbs | Endpoints | Action |
 | --- | --- | --- |
