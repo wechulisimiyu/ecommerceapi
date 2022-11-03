@@ -1,9 +1,11 @@
 const jwt = require("jsonwebtoken")
 
+// to verify the token provided in the header matches the one stored
+// in the db
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers.token
   if (authHeader) {
-    const token = authHeader.split(" ")[1]
+    const token = authHeader.split(" ")[1] // Bearer `token` from docs
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
       if (err) res.status(403).json("Token is not valid!");
       req.user = user
@@ -14,6 +16,7 @@ const verifyToken = (req, res, next) => {
   }
 }
 
+// authorize access if userId matches db userId
 const verifyTokenAndAuthorization = (req, res, next) => {
   verifyToken(req, res, () => {
     if (req.user.id === req.params.id || req.user.isAdmin) {
@@ -24,6 +27,7 @@ const verifyTokenAndAuthorization = (req, res, next) => {
   })
 }
 
+//verify admin
 const verifyTokenAndAdmin = (req, res, next) => {
   verifyToken(req, res, () => {
     if ( req.user.isAdmin) {
