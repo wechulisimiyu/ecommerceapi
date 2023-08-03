@@ -12,29 +12,144 @@ const {
   getAllUserStats,
 } = require("../controllers/userControllers");
 
-// @desc: updating user
-// ROUTE PUT/
+/**
+ * @openapi
+ * /api/users/{id}:
+ *   put:
+ *     tags: [User]
+ *     summary: Update a user
+ *     description: Update a user's information (Authorized user only).
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/UserUpdate'
+ *     responses:
+ *       200:
+ *         description: User updated successfully
+ *       401:
+ *         description: You are not authenticated!
+ *       403:
+ *         description: You are not allowed to do that!
+ *       500:
+ *         description: Internal server error
+ */
+
 router.put("/:id", verifyTokenAndAuthorization, updateUser);
 
-// @desc: delete user
-// ROUTE DELETE/
+/**
+ * @openapi
+ * /api/users/{id}:
+ *   delete:
+ *     tags: [User]
+ *     summary: Delete a user
+ *     description: Delete a user (Authorized user only).
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User ID
+ *     responses:
+ *       200:
+ *         description: User deleted successfully
+ *       401:
+ *         description: You are not authenticated!
+ *       403:
+ *         description: You are not allowed to do that!
+ *       500:
+ *         description: Internal server error
+ */
+
 router.delete("/:id", verifyTokenAndAuthorization, deleteUser);
 
-// @desc: get user
-// only admin can get any user
-// ROUTE GET/
-// http://localhost:5000/api/users/find/id
+/**
+ * @openapi
+ * /api/users/find/{id}:
+ *   get:
+ *     tags: [User]
+ *     summary: Get a user
+ *     description: Get details of a user (Admin only).
+ *     security:
+ *       - bearerAuth: []
+ *       - adminAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User ID
+ *     responses:
+ *       200:
+ *         description: User retrieved successfully
+ *       401:
+ *         description: You are not authenticated!
+ *       403:
+ *         description: You are not allowed to do that!
+ *       500:
+ *         description: Internal server error
+ */
+
 router.get("/find/:id", verifyTokenAndAdmin, getUser);
 
-// @desc: get all users
-// only admin can get all users
-// ROUTE GET/
-// http://localhost:5000/api/users/stats
+/**
+ * @openapi
+ * /api/users:
+ *   get:
+ *     tags: [User]
+ *     summary: Get all users
+ *     description: Get all users (Admin only).
+ *     security:
+ *       - bearerAuth: []
+ *       - adminAuth: []
+ *     responses:
+ *       200:
+ *         description: Users retrieved successfully
+ *       401:
+ *         description: You are not authenticated!
+ *       403:
+ *         description: You are not allowed to do that!
+ *       500:
+ *         description: Internal server error
+ */
+
 router.get("/", verifyTokenAndAdmin, getAllUsers);
 
-// @desc: get user stats
-// only admin can get all user stats
-// ROUTE GET/
+/**
+ * @openapi
+ * /api/users/stats:
+ *   get:
+ *     tags: [User]
+ *     summary: Get user stats
+ *     description: Get user statistics (Admin only).
+ *     security:
+ *       - bearerAuth: []
+ *       - adminAuth: []
+ *     responses:
+ *       200:
+ *         description: User stats retrieved successfully
+ *       401:
+ *         description: You are not authenticated!
+ *       403:
+ *         description: You are not allowed to do that!
+ *       500:
+ *         description: Internal server error
+ */
+
 router.get("/stats", verifyTokenAndAdmin, getAllUserStats);
 
 module.exports = router;
