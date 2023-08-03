@@ -16,7 +16,7 @@ const orderRoute = require("./api/routes/order");
 const useBasePath = true;
 
 // loading the config files
-dotenv.config({ path: "./config/config.env" });
+dotenv.config();
 
 // connect the db
 connectDB();
