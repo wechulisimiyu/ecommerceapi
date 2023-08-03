@@ -42,7 +42,9 @@ app.use("/api/orders", orderRoute);
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(docs));
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send(
+    '<h1>Welcome to the API</h1><p>For API documentation, <a href="/docs">click here</a></p>'
+  );
 });
 
 const port = process.env.PORT || 5000;
