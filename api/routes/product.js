@@ -27,14 +27,43 @@ const {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/NewProduct'
+ *             $ref: '#/components/schemas/Product'
  *     responses:
  *       200:
  *         description: Product created successfully
+ *       401:
+ *         description: You are not authenticated!
  *       403:
  *         description: You are not allowed to do that!
  *       500:
  *         description: Internal server error
+ */
+
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     Product:
+ *       type: object
+ *       properties:
+ *         title:
+ *           type: string
+ *           required: true
+ *           unique: true
+ *         desc:
+ *           type: string
+ *           required: true
+ *         img:
+ *           type: string
+ *           required: true
+ *         categories:
+ *           type: array
+ *         size:
+ *           type: string
+ *         color:
+ *           type: string
+ *         price:
+ *           type: number
  */
 
 router.post("/", verifyTokenAndAdmin, createNewProduct);

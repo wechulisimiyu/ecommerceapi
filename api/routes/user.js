@@ -45,6 +45,27 @@ const {
  *         description: Internal server error
  */
 
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     UserUpdate:
+ *       type: object
+ *       properties:
+ *         username:
+ *           type: string
+ *           description: The new username for the user.
+ *         email:
+ *           type: string
+ *           description: The new email for the user.
+ *         password:
+ *           type: string
+ *           description: The new password for the user.
+ *         isAdmin:
+ *           type: boolean
+ *           description: The new admin status for the user.
+ */
+
 router.put("/:id", verifyTokenAndAuthorization, updateUser);
 
 /**

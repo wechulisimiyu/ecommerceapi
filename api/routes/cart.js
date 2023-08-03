@@ -27,20 +27,7 @@ const router = require("express").Router();
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               userId:
- *                 type: string
- *               products:
- *                 type: array
- *                 items:
- *                   type: object
- *                   properties:
- *                     productId:
- *                       type: string
- *                     quantity:
- *                       type: number
- *                       default: 1
+ *             $ref: '#/components/schemas/NewCart'
  *     responses:
  *       200:
  *         description: Cart created successfully
@@ -51,8 +38,6 @@ const router = require("express").Router();
  *       500:
  *         description: Internal server error
  */
-
-router.post("/", verifyToken, createCart);
 
 /**
  * @openapi
@@ -75,14 +60,7 @@ router.post("/", verifyToken, createCart);
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               userId:
- *                 type: string
- *               products:
- *                 type: array
- *                 items:
- *                   $ref: '#/components/schemas/ProductUpdate'
+ *             $ref: '#/components/schemas/CartUpdate'
  *     responses:
  *       200:
  *         description: Cart updated successfully
@@ -94,7 +72,35 @@ router.post("/", verifyToken, createCart);
  * @openapi
  * components:
  *   schemas:
- *     ProductUpdate:
+ *     NewCart:
+ *       type: object
+ *       properties:
+ *         userId:
+ *           type: string
+ *           description: The ID of the user.
+ *         products:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/CartProduct'
+ *     CartUpdate:
+ *       type: object
+ *       properties:
+ *         userId:
+ *           type: string
+ *           description: The ID of the user.
+ *         products:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/CartProductUpdate'
+ *     CartProduct:
+ *       type: object
+ *       properties:
+ *         productId:
+ *           type: string
+ *         quantity:
+ *           type: number
+ *           default: 1
+ *     CartProductUpdate:
  *       type: object
  *       properties:
  *         productId:
@@ -106,7 +112,7 @@ router.post("/", verifyToken, createCart);
  *           description: The new quantity of the product in the cart.
  */
 
-
+router.post("/", verifyToken, createCart);
 router.put("/:id", verifyTokenAndAuthorization, updateCart);
 
 /**

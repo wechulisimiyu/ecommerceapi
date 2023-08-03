@@ -38,6 +38,32 @@ const router = require("express").Router();
  *         description: Internal server error
  */
 
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     Order:
+ *       type: object
+ *       properties:
+ *         userId:
+ *           type: string
+ *         products:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               productId:
+ *                 type: string
+ *               quantity:
+ *                 type: number
+ *         amount:
+ *           type: number
+ *         address:
+ *           type: object
+ *         status:
+ *           type: string
+ */
+
 router.post("/", verifyToken, addOrder);
 
 /**
@@ -73,6 +99,33 @@ router.post("/", verifyToken, addOrder);
  *       500:
  *         description: Internal server error
  */
+
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     OrderUpdate:
+ *       type: object
+ *       properties:
+ *         userId:
+ *           type: string
+ *         products:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               productId:
+ *                 type: string
+ *               quantity:
+ *                 type: number
+ *         amount:
+ *           type: number
+ *         address:
+ *           type: object
+ *         status:
+ *           type: string
+ */
+
 
 router.put("/:id", verifyTokenAndAdmin, updateUserOrder);
 
