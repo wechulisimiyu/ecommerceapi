@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node app",
     "dev": "cross-env NODE_ENV=development nodemon app",
-    "build": "node build"
+    "build": "npm install"
   },
   "keywords": [],
   "author": "",
