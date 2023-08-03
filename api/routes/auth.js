@@ -8,11 +8,6 @@ const { registerUser, loginUser } = require('../controllers/authControllers')
  *   description: User authentication operations
  */
 
-
-// @desc: User register
-// Route: POST/
-// http://localhost:5000/api/auth/register
-
 /**
  * @openapi
  * /api/auth/register:
@@ -33,6 +28,12 @@ const { registerUser, loginUser } = require('../controllers/authControllers')
  *               password:
  *                 type: string
  *                 example: mysecretpassword
+ *               email:
+ *                 type: string
+ *                 example: johndoe@gmail.com
+ *               isAdmin:
+ *                 type: boolean
+ *                 example: true
  *     responses:
  *       201:
  *         description: User registered successfully
@@ -52,10 +53,6 @@ const { registerUser, loginUser } = require('../controllers/authControllers')
  */
 
 router.post("/register", registerUser) 
-
-// @desc: User login
-// Route: POST/
-// http://localhost:5000/api/auth/login
 
 /**
  * @openapi
