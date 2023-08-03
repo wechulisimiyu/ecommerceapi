@@ -51,7 +51,7 @@ const port = process.env.PORT || 5000;
 // production or development mode
 app.listen(port, () => {
   console.log(
-    `Server running in ${process.env.NODE_ENV} mode on http://localhost:${port}`
+    `Server running in ${process.env.NODE_ENV} mode on http://0.0.0.0:${port}`
   );
   swaggerDocs(app, port)
 });

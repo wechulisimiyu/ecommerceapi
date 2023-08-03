@@ -28,7 +28,7 @@ const swaggerDocs = (app, port) => {
     res.setHeader("Content-Type", "application/json");
     res.send(swaggerSpec);
   });
-  console.info(`Docs available at http://localhost:${port}/docs`);
+  console.info(`Docs available at http://0.0.0.0:${port}/docs`);
 };
 
 module.exports = swaggerDocs;
