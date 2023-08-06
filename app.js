@@ -43,7 +43,7 @@ app.use("/api/orders", orderRoute);
 
 app.get("/", (req, res) => {
   res.send(
-    '<h1>Welcome to the API</h1><p>For API documentation, <a href="/docs">click here</a></p>'
+    '<h1>Welcome to this simple reusable ecommerce API</h1><p>For API documentation, <a href="/docs">click here</a></p>'
   );
 });
 
