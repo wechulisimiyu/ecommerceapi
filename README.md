@@ -53,7 +53,7 @@ ecommerce API is the backbone of an ecommerce site I hope to build with a react 
 
 ## Author
 
-* [Wechuli Simiyu](https://github.com/wechu07)
+* [Wechuli Simiyu](https://github.com/wechulisimiyu)
 
 ### License
 
